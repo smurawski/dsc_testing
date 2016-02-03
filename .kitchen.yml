@@ -1,21 +1,25 @@
 ---
 driver:
   name: vagrant
+  customize:
+    cpus: 2
+    memory: 4096
 
 provisioner:
   name: chef_zero
 
-# Uncomment the following verifier to leverage Inspec instead of Busser (the
-# default verifier)
-# verifier:
-#   name: inspec
+verifier:
+  name: pester
 
 platforms:
-  - name: ubuntu-14.04
-  - name: centos-7.1
+  - name: windows-2012r2-chef12
+    driver:
+      box: chef/windows-server-2012r2-standard
 
 suites:
-  - name: default
+  - name: hashes
     run_list:
-      - recipe[dsc_testing::default]
-    attributes:
+      - recipe[dsc_testing::with_hashes]
+  - name: hashes
+    run_list:
+      - recipe[dsc_testing::reboot_pending]
