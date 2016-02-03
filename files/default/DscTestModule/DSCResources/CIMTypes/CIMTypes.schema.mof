@@ -1,0 +1,9 @@
+[ClassVersion("1.0.0"), FriendlyName("CIMTypes")]
+class CIMTypes :  OMI_BaseResource
+{
+	[Key] string Name;
+	[Write, EmbeddedInstance("MSFT_KeyValuePair")] String HashTable[];
+};
+
+
+
