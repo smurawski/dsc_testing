@@ -11,14 +11,18 @@ Since the DSC LCM is really picky about types and we are going from Ruby to Powe
 
 ### default
 
-Makes sure PowerShell remoting is enabled and that the LCM is configured so that invoke-dscresource can be used.
+Makes sure PowerShell remoting is enabled and that the LCM is configured so that `invoke-dscresource` can be used.
 
 ### with_hashes
 
 Tests how ruby hashes are used by resources that take Key/Value CIM instances.
 
-Validates both hashes and Chef::Node::ImmutableMash (attributes)
+Validates both hashes and `Chef::Node::ImmutableMash` (attributes)
 
 ### reboot_pending
 
-Tests reboot_action's response when a DSC resource flags that a reboot was needed. 
+Tests `reboot_action`'s response when a DSC resource flags that a reboot was needed. 
+
+## credentials
+
+Tests `dsc_resource` being able to use `ps_credential` via kitchen.
