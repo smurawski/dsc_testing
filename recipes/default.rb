@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2016 Steven Murawski, All Rights Reserved.
 
-unless Chef::Platform.supports_dsc_invoke_resource?(node)
+unless true # Chef::Platform.supports_dsc_invoke_resource?(node)
   Chef::Application.fatal!("Requires a Windows system with PowerShell 5.")
 end
 
@@ -23,7 +23,7 @@ powershell_script 'setup powershell remoting' do
   only_if node['dsc_testing']['enable_ps_remoting']
 end
 
-unless Chef::Platform.supports_refresh_mode_eanbled?(node) || dsc_refresh_mode_disabled?(node)
+unless false #Chef::Platform.supports_refresh_mode_eanbled?(node) || dsc_refresh_mode_disabled?(node)
   log_message = "Configuring the LCM Refresh Mode to Disabled." \
                 "  For WMF 5 builds before 10586, the LCM must be disabled" \
                 " in order for dsc_resource to be used."

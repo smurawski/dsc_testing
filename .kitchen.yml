@@ -7,16 +7,35 @@ driver:
 
 provisioner:
   name: chef_zero
+  require_chef_omnibus: 12.7
 
 verifier:
   name: pester
 
 platforms:
-  - name: windows-2012r2-chef12
+  - name: windows-2012r2-wmf4-chef12
     driver:
       box: chef/windows-server-2012r2-standard
 
 suites:
+  - name: pullserver
+    run_list:
+      - recipe[dsc_testing::test_pull_server]
+    includes: windows-2012r2-wmf5-chef12
+  - name: partials
+    run_list:
+      - recipe[dsc_testing::test_partials]
+    includes: windows-2012r2-wmf5-chef12
+  - name: packagemanagement
+    run_list:
+      - recipe[dsc_testing::test_package_mgmt]
+    includes: windows-2012r2-wmf5-chef12
+  - name: credentials
+    run_list:
+      - recipe[dsc_testing::credentials]
+    includes:
+      - windows-2012r2-wmf5pp-chef12
+      - windows-2012r2-wmf5-chef12
   - name: hashes
     run_list:
       - recipe[dsc_testing::with_hashes]
