@@ -44,7 +44,7 @@ unless false #Chef::Platform.supports_refresh_mode_eanbled?(node) || dsc_refresh
               {
                   ConfigurationMode = "ApplyOnly"
                   RebootNodeIfNeeded = $false
-                  RefreshMode = 'Disabled'
+                  # RefreshMode = 'Disabled'
               }
           }
       }

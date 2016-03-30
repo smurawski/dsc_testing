@@ -4,6 +4,13 @@
 #
 # Copyright (c) 2016 Steven Murawski, All Rights Reserved.
 
+include_recipe 'dsc_testing::default'
+
+reboot 'Cancel reboot' do
+  action :cancel
+  reason 'I do not really want to reboot now.'
+end
+
 dsc_resource 'Do not require reboot' do
   resource :rebooter
   module_name 'DscTestModule'
@@ -18,9 +25,7 @@ dsc_resource 'Require reboot' do
   property :name, 'Sample with reboot'
   property :Reboot, 'true'
   reboot_action :request_reboot
+  notifies :cancel, 'reboot[Cancel reboot]', :immediately 
 end
 
-reboot 'Cancel reboot' do
-  action :cancel
-  reason 'I do not really want to reboot now.'
-end
+
