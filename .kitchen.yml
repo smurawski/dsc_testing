@@ -41,3 +41,9 @@ suites:
   - name: embedded_cim_instance
     run_list:
       - recipe[dsc_testing::embedded_cim_instance]
+  - name: errors
+    run_list:
+      - recipe[dsc_testing::errors]
+  - name: resources_in_dsc_script
+    run_list:
+      - recipe[dsc_testing::resources_in_dsc_script]
